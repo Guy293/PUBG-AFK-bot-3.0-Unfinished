@@ -1,4 +1,4 @@
-﻿namespace PUBG_Bot_New_UI.Properties
+﻿namespace PUBG_AFK_bot.Properties
 {
 
 

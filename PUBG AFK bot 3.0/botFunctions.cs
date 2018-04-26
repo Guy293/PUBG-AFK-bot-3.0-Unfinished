@@ -1,4 +1,4 @@
-﻿using PUBG_Bot_New_UI.Properties;
+﻿using PUBG_AFK_bot.Properties;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 
 
-namespace PUBG_Bot_New_UI
+namespace PUBG_AFK_bot
 {
     class BotFunctions
     {

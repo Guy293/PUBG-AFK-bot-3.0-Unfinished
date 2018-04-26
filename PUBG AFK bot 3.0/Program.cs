@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PUBG_Bot_New_UI
+namespace PUBG_AFK_bot
 {
     static class Program
     {

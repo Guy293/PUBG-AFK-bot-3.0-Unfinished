@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PUBG_Bot_New_UI
+namespace PUBG_AFK_bot
 {
     public partial class settingsForm : Form
     {

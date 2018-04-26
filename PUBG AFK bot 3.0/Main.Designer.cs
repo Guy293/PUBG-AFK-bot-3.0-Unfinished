@@ -1,4 +1,4 @@
-﻿namespace PUBG_Bot_New_UI
+﻿namespace PUBG_AFK_bot
 {
     partial class Main
     {

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUBG Bot New UI", "PUBG Bot New UI\PUBG Bot New UI.csproj", "{A4BDB15D-7301-410D-8D06-F565D29F5AB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUBG AFK bot 3.0", "PUBG AFK bot 3.0\PUBG AFK bot 3.0.csproj", "{A4BDB15D-7301-410D-8D06-F565D29F5AB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

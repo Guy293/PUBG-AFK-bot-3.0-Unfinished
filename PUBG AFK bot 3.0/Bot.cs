@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Drawing;
-using static PUBG_Bot_New_UI.BotFunctions;
+using static PUBG_AFK_bot.BotFunctions;
 
 
-namespace PUBG_Bot_New_UI
+namespace PUBG_AFK_bot
 {
     static class Bot
     {

@@ -9,6 +9,7 @@ namespace PUBG_AFK_bot
 {
     static class Bot
     {
+        // Testttttttttttttttttttttttt
 
         //  public static Thread _t = new Thread(new ThreadStart(StartBot));
 

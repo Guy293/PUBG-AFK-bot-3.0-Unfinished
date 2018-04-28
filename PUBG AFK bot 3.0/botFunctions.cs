@@ -5,7 +5,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
-
 // Use this to get color:
 //    ColorSystem.CheckColor(X, Y, Color.FromArgb(A, R, G, B))
 
@@ -71,7 +70,7 @@ namespace PUBG_AFK_bot
 
         // Dll for keyboard click
         [DllImport("user32.dll", SetLastError = true)]
-        private static extern void Keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
 
 
         // Dlls and setups for mouse clicks and movement
@@ -79,8 +78,8 @@ namespace PUBG_AFK_bot
         private static extern bool SetCursorPos(int x, int y);
 
 
-        [DllImport("user32.dll")]
-        private static extern void Mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        private static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
 
 
 
@@ -90,8 +89,8 @@ namespace PUBG_AFK_bot
             SetCursorPos(xposclick, yposclick);
             Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
 
-            Mouse_event(0x02, 0, 0, 0, 0);
-            Mouse_event(0x04, 0, 0, 0, 0);
+            mouse_event(0x02, 0, 0, 0, 0);
+            mouse_event(0x04, 0, 0, 0, 0);
         }
 
 
@@ -99,8 +98,8 @@ namespace PUBG_AFK_bot
         // Overload for Simulates a left mouse click only
         public static void Click()
         {
-            Mouse_event(0x02, 0, 0, 0, 0);
-            Mouse_event(0x04, 0, 0, 0, 0);
+            mouse_event(0x02, 0, 0, 0, 0);
+            mouse_event(0x04, 0, 0, 0, 0);
             Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
         }
 
@@ -111,8 +110,8 @@ namespace PUBG_AFK_bot
         // KeyBoard click from parameter
         public static void KeyBoard(byte key)
         {
-            Keybd_event(key, 0, 0x0001, 0);
-            Keybd_event(key, 0, 0x0002, 0);
+            keybd_event(key, 0, 0x0001, 0);
+            keybd_event(key, 0, 0x0002, 0);
         }
 
 
@@ -121,7 +120,7 @@ namespace PUBG_AFK_bot
         // Hold KeyBoard click from parameter
         public static void HoldKeyBoard(byte key)
         {
-            Keybd_event(key, 0, 0x0001, 0);
+            keybd_event(key, 0, 0x0001, 0);
         }
 
 
@@ -129,7 +128,7 @@ namespace PUBG_AFK_bot
         // Release KeyBoard click from parameter
         public static void ReleaseKeyBoard(byte key)
         {
-            Keybd_event(key, 0, 0x0002, 0);
+            keybd_event(key, 0, 0x0002, 0);
         }
 
 

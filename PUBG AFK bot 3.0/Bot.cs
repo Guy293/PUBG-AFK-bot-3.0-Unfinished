@@ -2,11 +2,15 @@
 using System.Drawing;
 using static PUBG_AFK_bot.BotFunctions;
 
+// Start PUBG
+// Process.Start("steam://rungameid/578080");
 
 namespace PUBG_AFK_bot
 {
     static class Bot
     {
+
+        //  public static Thread _t = new Thread(new ThreadStart(StartBot));
 
         // Waits for lobby by start button color
         private static void WaitForLobby()
@@ -22,16 +26,15 @@ namespace PUBG_AFK_bot
             {
                 if (clsProcess.ProcessName.Contains("PLAYERUNKNOWN'S BATTLEGROUNDS ")) return true;
             }
+            //  Process.Start("steam://rungameid/578080");
             return false;
         }
-
 
 
 
         // Starts the bot
         public static void StartBot()
         {
-
             // while (IsProcessOpen())
             while (true)
             {
@@ -50,7 +53,6 @@ namespace PUBG_AFK_bot
                 InGame();  // In game tasks
 
                 LeaveMatch();  // Leaves the match
-                LeaveMatch();
             }
         }
 

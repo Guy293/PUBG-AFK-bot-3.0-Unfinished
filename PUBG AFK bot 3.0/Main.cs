@@ -3,10 +3,11 @@
 
 
 /*
+TODO    Move ToDo list to separate file and show in Github.
+TODO    Map choose
 TODO    Stop bot if F4 press
 TODO    Fix crate after getting
 TODO    Change server only first time
-TODO    Consider removing slider from settingsForm
 TODO    Hide tray
 TODO    Remove time between jumps etc...
 TODO    Delivery delay when buying crate
@@ -22,6 +23,8 @@ namespace PUBG_AFK_bot
 {
     public partial class Main : Form
     {
+        private settingsForm settingsFormOpen = new settingsForm();
+
         public Main()
         {
             InitializeComponent();
@@ -31,16 +34,18 @@ namespace PUBG_AFK_bot
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
         }
 
 
 
         private void Start_Click(object sender, EventArgs e)
         {
+
+            Bot.StartBotThread.Start();
+
             // Bot.Test();
 
-            Bot.StartBot();
+            // Bot.StartBot();
 
             // Hide();
             // SystemTrayIcon.Visible = true;
@@ -50,7 +55,6 @@ namespace PUBG_AFK_bot
         // Start the settingsForm
         private void Settings_click(object sender, EventArgs e)
         {
-            settingsForm settingsFormOpen = new settingsForm();
             settingsFormOpen.Show();
 
         }
@@ -65,8 +69,6 @@ namespace PUBG_AFK_bot
         // Start the settingsForm
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO Optimize by initializing the settingsForm once on MainForm_Load function
-            settingsForm settingsFormOpen = new settingsForm();
             settingsFormOpen.Show();
         }
 

@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
+using System.Threading;
 using static PUBG_AFK_bot.BotFunctions;
 
 // Start PUBG
@@ -9,28 +9,7 @@ namespace PUBG_AFK_bot
 {
     static class Bot
     {
-
-        //  public static Thread _t = new Thread(new ThreadStart(StartBot));
-
-        // Waits for lobby by start button color
-        private static void WaitForLobby()
-        {
-            while (!CheckColor(172, 995, Color.FromArgb(255, 255, 255, 255))) ;
-        }
-
-
-        // Check from all Processes if PUBG Process is open by name and returns true/false
-        public static bool IsProcessOpen()
-        {
-            foreach (Process clsProcess in Process.GetProcesses())
-            {
-                if (clsProcess.ProcessName.Contains("PLAYERUNKNOWN'S BATTLEGROUNDS ")) return true;
-            }
-            //  Process.Start("steam://rungameid/578080");
-            return false;
-        }
-
-
+        public static Thread StartBotThread = new Thread(new ThreadStart(Bot.StartBot));
 
         // Starts the bot
         public static void StartBot()
@@ -38,6 +17,7 @@ namespace PUBG_AFK_bot
             // while (IsProcessOpen())
             while (true)
             {
+
                 WaitForLobby(); // Waits for lobby by settings button color and if true do lobby tasks
 
                 // Checks the ToBuyCrateSettingFiled settings and buy if true
@@ -57,13 +37,25 @@ namespace PUBG_AFK_bot
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         // Buy crate if settings
         private static void BuyCrate()
         {
 
 
             // Clicks untill rewards tab open
-            while (!CheckColor(633, 44, Color.FromArgb(255, 255, 199, 0)))
+            while (!CompareColor(633, 44, Color.FromArgb(255, 255, 199, 0)))
             {
                 Click(634, 52);
             }
@@ -80,7 +72,7 @@ namespace PUBG_AFK_bot
 
 
             // If yes wait (end)
-            while (!CheckColor(965, 315, Color.FromArgb(255, 255, 255, 255)))
+            while (!CompareColor(965, 315, Color.FromArgb(255, 255, 255, 255)))
 
 
                 // Get back to Play menu
@@ -139,17 +131,17 @@ namespace PUBG_AFK_bot
         // Join game by settings choise
         static void JoinGame()
         {
-            Click(166, 784);  // Team 1-Man Squad
-
-            Click(166, 894);  // Perspective FPP
-
+            Click(226, 835);  // Team Tab
+            Click(1043, 863); // 1-Man-Squad
+            Click(166, 894);  // Perspective
+            Click(688, 862); // FPP
             Click(167, 1007);  // Start
 
             // Waits for loading color
-            while (!CheckColor(964, 500, Color.FromArgb(255, 252, 252, 252))) ;
+            while (!CompareColor(964, 500, Color.FromArgb(255, 252, 252, 252))) ;
 
             // Waits for end loading color
-            while (CheckColor(964, 500, Color.FromArgb(255, 252, 252, 252))) ;
+            while (CompareColor(964, 500, Color.FromArgb(255, 252, 252, 252))) ;
         }
 
 
@@ -157,7 +149,11 @@ namespace PUBG_AFK_bot
         // Leave the match
         private static void LeaveMatch()
         {
-            Click(1718, 951);  // Leave match
+            // Spam leave match until confirm open
+            while (!CompareColor(936, 496, Color.FromArgb(255, 255, 255)))
+            {
+                Click(1718, 951);  // Leave match
+            }
             Click(844, 573);  // Confirm
         }
 
@@ -169,7 +165,7 @@ namespace PUBG_AFK_bot
             KeyBoard(0xBB);
 
             // Waits for die and clicks 'F'
-            while (!CheckColor(1692, 956, Color.FromArgb(255, 255, 255, 255))) KeyBoard(0x46);
+            while (!CompareColor(1692, 956, Color.FromArgb(255, 255, 255, 255))) KeyBoard(0x46);
         }
 
 

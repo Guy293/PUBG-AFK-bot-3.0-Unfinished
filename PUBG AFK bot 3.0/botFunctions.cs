@@ -1,5 +1,6 @@
 ﻿using PUBG_AFK_bot.Properties;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -49,11 +50,19 @@ namespace PUBG_AFK_bot
 
             |    Color:
             |    --------
-            |                     CheckColor (int x, int y, Color.FromArgb(A, R, G, B)) For checking if color on (x,y) and Color from parameter is same and return true/false
+            |                     CompareColor (int x, int y, Color.FromArgb(A, R, G, B)) For checking if color on (x,y) and Color from parameter is same and return true/false
             |                       
-            |                     PrintColor (Two overloads)
-            |                          PrintColor() Print to console current Cursor (x,y) and color
+            |                     GetColor (Two overloads)
+            |                          GetColor() Print to console current Cursor (x,y) and color
             |                          PrintColor(int x, int y) Print to console current color on (x,y) from parameter
+
+
+
+            |     Misc:
+            |     -----
+            |
+            |           WaitForLobby() - waits for lobby to load (by start color)
+            |           IsProcessOpen() - Return boolean is pubg process open
            */
 
 
@@ -174,12 +183,11 @@ namespace PUBG_AFK_bot
             return color;
         }
 
-
-
+        //TODO    Make it more easy to use by making it to WaitForColor
         // Checks for match (Pixel color from x,y) and parameter and returns true/false
-        public static bool CheckColor(int xCheck, int yCheck, Color colorCheck)
+        public static bool CompareColor(int xCheck, int yCheck, Color colorCheck)
         {
-            if (GetPixelColor(xCheck, yCheck).A == colorCheck.A && GetPixelColor(xCheck, yCheck).R == colorCheck.R && GetPixelColor(xCheck, yCheck).G == colorCheck.G && GetPixelColor(xCheck, yCheck).B == colorCheck.B)
+            while (GetPixelColor(xCheck, yCheck).A == colorCheck.A && GetPixelColor(xCheck, yCheck).R == colorCheck.R && GetPixelColor(xCheck, yCheck).G == colorCheck.G && GetPixelColor(xCheck, yCheck).B == colorCheck.B)
                 return true;
 
             return false;
@@ -187,18 +195,52 @@ namespace PUBG_AFK_bot
 
 
         // Comment Out on release
-        public static void PrintColor(int xPrint, int yPrint)
+        public static string GetColor(int xPrint, int yPrint)
         {
-            Console.WriteLine(GetPixelColor(xPrint, yPrint));
+            return GetPixelColor(xPrint, yPrint).ToString();
         }
 
-
+        //TODO    Method to return string like above
         public static void PrintColor()
         {
+            Thread.Sleep(2000);
             Console.WriteLine(GetPixelColor(Cursor.Position.X, Cursor.Position.Y));
             Console.WriteLine("X: {0} Y: {1}", Cursor.Position.X, Cursor.Position.Y);
 
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+        // --------------------------------- Misc --------------------------------- \\
+
+
+
+        // Waits for lobby by start button color
+        public static void WaitForLobby()
+        {
+            while (!CompareColor(222, 981, Color.FromArgb(255, 0, 0, 0))) ;
+        }
+
+
+        // Check from all Processes if PUBG Process is open by name and returns true/false
+        public static bool IsProcessOpen()
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.Contains("PLAYERUNKNOWN'S BATTLEGROUNDS ")) return true;
+            }
+            //  Process.Start("steam://rungameid/578080");
+            return false;
+        }
     }
 }

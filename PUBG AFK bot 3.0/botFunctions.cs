@@ -202,8 +202,8 @@ namespace PUBG_AFK_bot
         public static void PrintColor()
         {
             Thread.Sleep(2000);
-            Console.WriteLine(GetPixelColor(Cursor.Position.X, Cursor.Position.Y));
-            Console.WriteLine("X: {0} Y: {1}", Cursor.Position.X, Cursor.Position.Y);
+            System.Diagnostics.Debug.WriteLine(GetPixelColor(Cursor.Position.X, Cursor.Position.Y));
+            System.Diagnostics.Debug.WriteLine("X: {0} Y: {1}", Cursor.Position.X, Cursor.Position.Y);
 
         }
 

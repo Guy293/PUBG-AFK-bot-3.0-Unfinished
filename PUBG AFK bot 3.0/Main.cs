@@ -53,10 +53,8 @@ namespace PUBG_AFK_bot
                 Bot.StartBotThread.Abort();
             }
             */
-            //Bot.Test();
-
             // Bot.StartBot();
-
+            //Bot.Test();
             // Hide();
             // SystemTrayIcon.Visible = true;
         }

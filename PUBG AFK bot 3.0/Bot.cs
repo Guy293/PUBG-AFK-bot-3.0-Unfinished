@@ -184,11 +184,14 @@ namespace PUBG_AFK_bot
         private static void LeaveMatch()
         {
             // Spam leave match until confirm open
-            while (!CompareColor(936, 496, Color.FromArgb(255, 255, 255)))
+            while (!CompareColor(936, 496, Color.FromArgb(255, 255, 255, 255)))
             {
                 Click(1718, 951);  // Leave match
             }
-            Click(844, 573);  // Confirm
+            while (CompareColor(936, 499, Color.FromArgb(255, 255, 255, 255))){
+                Thread.Sleep(100);
+                Click(844, 573);  // Confirm
+            }
         }
 
 
@@ -207,8 +210,7 @@ namespace PUBG_AFK_bot
         // For Testing
         public static void Test()
         {
-            while (true)
-                Console.WriteLine(!CompareColor(321, 831, Color.FromArgb(255, 234, 234, 234)));
+            BotFunctions.PrintColor();
         }
     }
 }

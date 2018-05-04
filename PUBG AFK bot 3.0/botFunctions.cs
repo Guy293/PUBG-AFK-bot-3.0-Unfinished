@@ -96,7 +96,7 @@ namespace PUBG_AFK_bot
         public static void Click(int xposclick, int yposclick)
         {
             SetCursorPos(xposclick, yposclick);
-            Thread.Sleep(100);
+            //Thread.Sleep(100);
 
             mouse_event(0x02, 0, 0, 0, 0);
             mouse_event(0x04, 0, 0, 0, 0);
@@ -109,7 +109,7 @@ namespace PUBG_AFK_bot
         {
             mouse_event(0x02, 0, 0, 0, 0);
             mouse_event(0x04, 0, 0, 0, 0);
-            // Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
+            //Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
         }
 
 
@@ -184,6 +184,7 @@ namespace PUBG_AFK_bot
         // Checks for match (Pixel color from x,y) and parameter and returns true/false
         public static bool CompareColor(int xCheck, int yCheck, Color colorCheck)
         {
+            Thread.Sleep(200);
             while (GetPixelColor(xCheck, yCheck).A == colorCheck.A && GetPixelColor(xCheck, yCheck).R == colorCheck.R && GetPixelColor(xCheck, yCheck).G == colorCheck.G && GetPixelColor(xCheck, yCheck).B == colorCheck.B)
                 return true;
 

@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Threading;
 using static PUBG_AFK_bot.BotFunctions;
 
@@ -206,7 +207,8 @@ namespace PUBG_AFK_bot
         // For Testing
         public static void Test()
         {
-            BotFunctions.PrintColor();
+            while (true)
+                Console.WriteLine(!CompareColor(321, 831, Color.FromArgb(255, 234, 234, 234)));
         }
     }
 }

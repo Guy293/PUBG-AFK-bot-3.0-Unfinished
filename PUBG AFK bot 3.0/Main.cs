@@ -3,6 +3,8 @@
 
 
 /*
+TODO    Open PUBG if not started
+TODO    Start PUBG If Crash
 TODO    Move ToDo list to separate file and show in Github.
 TODO    Map choose
 TODO    Stop bot if F4 press
@@ -23,7 +25,6 @@ namespace PUBG_AFK_bot
 {
     public partial class Main : Form
     {
-        private settingsForm settingsFormOpen = new settingsForm();
 
         public Main()
         {
@@ -40,10 +41,19 @@ namespace PUBG_AFK_bot
 
         private void Start_Click(object sender, EventArgs e)
         {
-
             Bot.StartBotThread.Start();
 
-            // Bot.Test();
+            /*
+            if (!Bot.StartBotThread.IsAlive)
+            {
+                Bot.StartBotThread.Start();
+            }
+            else
+            {
+                Bot.StartBotThread.Abort();
+            }
+            */
+            //Bot.Test();
 
             // Bot.StartBot();
 
@@ -55,7 +65,7 @@ namespace PUBG_AFK_bot
         // Start the settingsForm
         private void Settings_click(object sender, EventArgs e)
         {
-            settingsFormOpen.Show();
+            new settingsForm().Show();
 
         }
 
@@ -69,7 +79,7 @@ namespace PUBG_AFK_bot
         // Start the settingsForm
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            settingsFormOpen.Show();
+            new settingsForm().Show();
         }
 
         // Working on some features with system tray. Will finish it later.

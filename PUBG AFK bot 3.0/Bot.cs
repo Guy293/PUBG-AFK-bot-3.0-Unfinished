@@ -10,14 +10,14 @@ namespace PUBG_AFK_bot
     static class Bot
     {
         public static Thread StartBotThread = new Thread(new ThreadStart(Bot.StartBot));
+        //public static Thread CheckPubgIsOpenThread = new Thread(new ThreadStart(BotFunctions.CheckProcess));
 
         // Starts the bot
         public static void StartBot()
         {
-            // while (IsProcessOpen())
+            //CheckPubgIsOpenThread.Start(); // Start if not
             while (true)
             {
-
                 WaitForLobby(); // Waits for lobby by settings button color and if true do lobby tasks
 
                 // Checks the ToBuyCrateSettingFiled settings and buy if true
@@ -128,14 +128,47 @@ namespace PUBG_AFK_bot
         }
 
 
-        // Join game by settings choise
+        // Join game by settings choice
         static void JoinGame()
         {
-            Click(226, 835);  // Team Tab
-            Click(1043, 863); // 1-Man-Squad
-            Click(166, 894);  // Perspective
-            Click(688, 862); // FPP
-            Click(167, 1007);  // Start
+
+
+            // Team Tab
+            do
+            {
+                Click(214, 833);
+            } while (!CompareColor(321, 831, Color.FromArgb(255, 234, 234, 234)));
+
+
+            // 1-Man-Squad
+            do
+            {
+                Click(1042, 852);
+            } while (!CompareColor(1042, 852, Color.FromArgb(255, 203, 203, 203)));
+
+
+            // Perspective
+            do
+            {
+                Click(228, 909);
+            } while (!CompareColor(228, 909, Color.FromArgb(255, 231, 231, 231)));
+
+
+            // FPPs
+            do
+            {
+                Click(732, 942);
+            } while (!CompareColor(732, 942, Color.FromArgb(255, 45, 45, 45)));
+
+
+            // Start
+            // Wait for black searching game bar
+            do
+            {
+                Click(167, 1007);
+            } while (!CompareColor(930, 1069, Color.FromArgb(255, 0, 0, 0)));
+
+
 
             // Waits for loading color
             while (!CompareColor(964, 500, Color.FromArgb(255, 252, 252, 252))) ;
@@ -173,6 +206,7 @@ namespace PUBG_AFK_bot
         // For Testing
         public static void Test()
         {
+            BotFunctions.PrintColor();
         }
     }
 }

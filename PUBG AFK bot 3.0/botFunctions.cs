@@ -1,6 +1,4 @@
-﻿using PUBG_AFK_bot.Properties;
-using System;
-using System.Diagnostics;
+﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -36,6 +34,7 @@ namespace PUBG_AFK_bot
 
 
 
+
             
             |    Keyboard:
             |    -------------- 
@@ -55,6 +54,7 @@ namespace PUBG_AFK_bot
             |                     GetColor (Two overloads)
             |                          GetColor() Print to console current Cursor (x,y) and color
             |                          PrintColor(int x, int y) Print to console current color on (x,y) from parameter
+
 
 
 
@@ -96,7 +96,7 @@ namespace PUBG_AFK_bot
         public static void Click(int xposclick, int yposclick)
         {
             SetCursorPos(xposclick, yposclick);
-            Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
+            Thread.Sleep(100);
 
             mouse_event(0x02, 0, 0, 0, 0);
             mouse_event(0x04, 0, 0, 0, 0);
@@ -109,11 +109,8 @@ namespace PUBG_AFK_bot
         {
             mouse_event(0x02, 0, 0, 0, 0);
             mouse_event(0x04, 0, 0, 0, 0);
-            Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
+            // Thread.Sleep(Settings.Default.ClickWaitTimeFiled);
         }
-
-
-
 
 
         // KeyBoard click from parameter
@@ -225,22 +222,32 @@ namespace PUBG_AFK_bot
 
 
 
-        // Waits for lobby by start button color
+        // Waits for lobby by start button color And Settings
         public static void WaitForLobby()
         {
-            while (!CompareColor(222, 981, Color.FromArgb(255, 0, 0, 0))) ;
+            while (!CompareColor(222, 981, Color.FromArgb(255, 0, 0, 0)) && (!CompareColor(108, 841, Color.FromArgb(255, 211, 211, 211)))) ;
         }
 
 
-        // Check from all Processes if PUBG Process is open by name and returns true/false
-        public static bool IsProcessOpen()
+        /*
+        // Check from all Processes if PUBG Process is open by name and returns true/false and starts PUBG
+        public static void CheckProcess()
         {
-            foreach (Process clsProcess in Process.GetProcesses())
+            do
             {
-                if (clsProcess.ProcessName.Contains("PLAYERUNKNOWN'S BATTLEGROUNDS ")) return true;
-            }
-            //  Process.Start("steam://rungameid/578080");
-            return false;
+                Thread.Sleep(10000);
+                foreach (Process clsProcess in Process.GetProcesses())
+                {
+                    if (clsProcess.ProcessName.Contains("PLAYERUNKNOWN'S BATTLEGROUNDS "))
+                    {
+                        return;
+                    }
+                }
+
+                Process.Start("steam://rungameid/578080");
+            } while (true);
+
         }
+        */
     }
 }
